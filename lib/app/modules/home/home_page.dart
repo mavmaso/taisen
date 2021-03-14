@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:taisen/app/data/provider/luta_provider.dart';
 import 'package:taisen/app/modules/arena/arena_page.dart';
 import 'package:taisen/app/modules/home/home_controller.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(context) {
-    // Instantiate your class using Get.put() to make it available for all "child" routes there.
     final HomeController c = Get.put(HomeController());
 
+    final LutaProvider prov = Get.put(LutaProvider());
+    final r = prov.getArena(1);
+    print(r);
+
     return Scaffold(
-        // Use Obx(()=> to update Text() whenever count is changed.
         appBar: AppBar(title: Text("大戦 Alpha 0.1")),
-        body: Column(
-          children: [
-            Center(
-                child: ElevatedButton(
-                    child: Text("Go to Other"),
-                    onPressed: () => Get.to(Arena()))),
-            Center(
-              child: Obx(() => Text("N: ${c.count}")),
-            )
-          ],
+        body: Container(
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                  child: Text("Go to Other"), onPressed: () => Get.to(Arena())),
+              Obx(() => Text("N: ${c.count}"))
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add), onPressed: c.increment));
