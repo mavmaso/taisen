@@ -5,8 +5,9 @@ import 'package:taisen/app/data/model/arena_model.dart';
 class LutaProvider extends GetConnect {
   @override
   void onInit() {
-    httpClient.baseUrl =
-        kDebugMode ? 'http://172.18.149.23:4000/api/v1' : 'algo';
+    httpClient.baseUrl = kDebugMode
+        ? 'http://172.19.4.198:4000/api/v1'
+        : 'https://server.com/api/v1';
   }
 
   getArena(int id) async {
@@ -14,9 +15,10 @@ class LutaProvider extends GetConnect {
       '/arenas/$id',
       headers: {"content-type": "application/json"},
     );
-    // print(r.body['data']);
 
-    return arenaToJson(r.body['data']);
+    final ArenaModel arena = ArenaModel.fromMap(r.body['data']['arena']);
+
+    return arena;
   }
 
   getArenas() async {
@@ -25,7 +27,11 @@ class LutaProvider extends GetConnect {
       headers: {"content-type": "application/json"},
     );
     // print(r.body['data']);
+    final List<ArenaModel> arenas =
+        List<ArenaModel>.from(r.body['data'].map((x) => ArenaModel.fromMap(x)));
 
-    return arenasFromJson(r.body['data']);
+    print(arenas);
+
+    return arenas;
   }
 }

@@ -9,7 +9,9 @@ class HomePage extends StatelessWidget {
   Widget build(context) {
     final HomeController c = Get.put(HomeController());
 
-    final LutaProvider prov = Get.put(LutaProvider());
+    final LutaProvider p = Get.put(LutaProvider());
+    // print(p.getArena(1));
+    // print(p.getArenas());
 
     return Scaffold(
         appBar: AppBar(title: Text("大戦 Alpha 0.1")),
@@ -21,7 +23,7 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                   child: Text("Go to Other"), onPressed: () => Get.to(Arena())),
               Obx(() => Text("N: ${c.count}")),
-              // Text(prov.getArenas())
+              // Text(p.getArenas())
             ],
           ),
         ),
