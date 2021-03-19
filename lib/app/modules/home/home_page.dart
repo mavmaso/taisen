@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taisen/app/data/provider/luta_provider.dart';
 import 'package:taisen/app/modules/arena/arena_page.dart';
 import 'package:taisen/app/modules/home/home_controller.dart';
+// import 'package:taisen/app/data/provider/luta_provider.dart';
+// import 'package:taisen/core/get_client.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(context) {
     final HomeController c = Get.put(HomeController());
-
-    final LutaProvider p = Get.put(LutaProvider());
+    // final getx = Get.put(GetClient());
+    // final LutaProvider p = Get.put(LutaProvider(client: getx));
     // print(p.getArena(1));
     // print(p.getArenas());
 

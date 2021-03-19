@@ -2,27 +2,25 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:mockito/mockito.dart';
 import 'package:taisen/app/data/model/arena_model.dart';
-// import 'package:taisen/app/data/model/arena_model.dart';
 import 'package:taisen/app/data/provider/luta_provider.dart';
+import 'package:taisen/core/get_client.dart';
 
-class GetMock extends Mock implements GetConnect {
-  void onInit() {
-    httpClient.baseUrl = 'http://test.co.br/api/v1';
-  }
-}
+class GetClientMock extends Mock implements GetClient {}
 
 void main() {
-  GetMock getMock;
+  GetClientMock getClientMock;
   LutaProvider lutaProvider;
 
   setUpAll(() {
-    getMock = GetMock();
-    lutaProvider = LutaProvider();
+    getClientMock = GetClientMock();
+    lutaProvider = LutaProvider(client: getClientMock);
   });
 
   group('Method Get', () {
     final fake = {
-      "data": {'teste': 'teste'}
+      "data": {
+        'arena': {'id': 1, 'status': "closed"}
+      }
     };
     final arena = ArenaModel(
       id: 1,
@@ -35,7 +33,7 @@ void main() {
 
     test('should returns ArenaModel, when successful', () async {
       when(
-        getMock.get(
+        getClientMock.get(
           any,
           headers: {"content-type": "application/json"},
         ),

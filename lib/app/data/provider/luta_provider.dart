@@ -1,17 +1,14 @@
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart';
 import 'package:taisen/app/data/model/arena_model.dart';
+import 'package:taisen/core/get_client.dart';
 
-class LutaProvider extends GetConnect {
-  @override
-  void onInit() {
-    httpClient.baseUrl = kDebugMode
-        ? 'http://172.19.4.198:4000/api/v1'
-        : 'https://server.com/api/v1';
-  }
+class LutaProvider {
+  final GetClient client;
+
+  LutaProvider({@required this.client});
 
   getArena(int id) async {
-    final r = await get(
+    final r = await client.get(
       '/arenas/$id',
       headers: {"content-type": "application/json"},
     );
@@ -22,15 +19,13 @@ class LutaProvider extends GetConnect {
   }
 
   getArenas() async {
-    final r = await get(
+    final r = await client.get(
       '/arenas',
       headers: {"content-type": "application/json"},
     );
-    // print(r.body['data']);
+
     final List<ArenaModel> arenas =
         List<ArenaModel>.from(r.body['data'].map((x) => ArenaModel.fromMap(x)));
-
-    print(arenas);
 
     return arenas;
   }
