@@ -5,10 +5,9 @@ import 'package:taisen/app/modules/home/home_controller.dart';
 // import 'package:taisen/app/data/provider/luta_provider.dart';
 // import 'package:taisen/core/get_client.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends GetView<HomeController> {
   @override
   Widget build(context) {
-    final HomeController c = Get.put(HomeController());
     // final getx = Get.put(GetClient());
     // final LutaProvider p = Get.put(LutaProvider(client: getx));
     // print(p.getArena(1));
@@ -23,12 +22,12 @@ class HomePage extends StatelessWidget {
             children: [
               ElevatedButton(
                   child: Text("Go to Other"), onPressed: () => Get.to(Arena())),
-              Obx(() => Text("N: ${c.count}")),
+              Obx(() => Text("N: ${controller.count}")),
               // Text(p.getArenas())
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add), onPressed: c.increment));
+            child: Icon(Icons.add), onPressed: controller.increment));
   }
 }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
+import 'package:taisen/app/modules/home/home_bindings.dart';
 import 'package:taisen/app/modules/home/home_page.dart';
 
-Widget testable(Widget widget) => MaterialApp(home: widget);
+Widget testable(Widget widget) =>
+    GetMaterialApp(home: widget, initialBinding: HomePageBinding());
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
