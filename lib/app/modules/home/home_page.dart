@@ -16,7 +16,11 @@ class HomePage extends GetView<HomeController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                  child: Text("Go to Other"), onPressed: () => Get.to(Arena())),
+                  child: Text("Go to Other"),
+                  onPressed: () => Get.to(
+                        Arena(),
+                        arguments: controller.count,
+                      )),
               Obx(() => Text("N: ${controller.count}")),
               Obx(() => Text("Arenas: ${controller.arenas.length}")),
             ],
