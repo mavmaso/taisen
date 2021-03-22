@@ -13,6 +13,7 @@ void main() {
 
     expect(find.text('大戦 Alpha 0.1'), findsOneWidget);
     expect(find.text('N: 0'), findsOneWidget);
+    expect(find.text('Arenas: 0'), findsOneWidget);
     expect(find.text('N: 1'), findsNothing);
 
     await tester.tap(find.byIcon(Icons.add));

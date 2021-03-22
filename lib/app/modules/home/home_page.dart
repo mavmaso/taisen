@@ -8,11 +8,6 @@ import 'package:taisen/app/modules/home/home_controller.dart';
 class HomePage extends GetView<HomeController> {
   @override
   Widget build(context) {
-    // final getx = Get.put(GetClient());
-    // final LutaProvider p = Get.put(LutaProvider(client: getx));
-    // print(p.getArena(1));
-    // print(p.getArenas());
-
     return Scaffold(
         appBar: AppBar(title: Text("大戦 Alpha 0.1")),
         body: Container(
@@ -23,7 +18,7 @@ class HomePage extends GetView<HomeController> {
               ElevatedButton(
                   child: Text("Go to Other"), onPressed: () => Get.to(Arena())),
               Obx(() => Text("N: ${controller.count}")),
-              // Text(p.getArenas())
+              Obx(() => Text("Arenas: ${controller.arenas.length}")),
             ],
           ),
         ),
