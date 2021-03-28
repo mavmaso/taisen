@@ -8,25 +8,41 @@ class LutaProvider {
   LutaProvider({@required this.client});
 
   getArena(int id) async {
-    final r = await client.get(
-      '/arenas/$id',
-      headers: {"content-type": "application/json"},
-    );
+    try {
+      final r = await client.get(
+        '/arenas/$id',
+        headers: {"content-type": "application/json"},
+      );
+      if (r.statusCode == 200) {
+        final ArenaModel arena = ArenaModel.fromMap(r.body['data']['arena']);
 
-    final ArenaModel arena = ArenaModel.fromMap(r.body['data']['arena']);
-
-    return arena;
+        return arena;
+      } else {
+        return {"error": "Status Code Error"};
+      }
+    } catch (e) {
+      return {"error": "Not Expected Error"};
+    }
   }
 
   getArenas() async {
-    final r = await client.get(
-      '/arenas',
-      headers: {"content-type": "application/json"},
-    );
+    try {
+      final r = await client.get(
+        '/arenas',
+        headers: {"content-type": "application/json"},
+      );
+      if (r.statusCode == 200) {
+        final List<ArenaModel> arenas = List<ArenaModel>.from(
+            r.body['data'].map((x) => ArenaModel.fromMap(x)));
 
-    final List<ArenaModel> arenas =
-        List<ArenaModel>.from(r.body['data'].map((x) => ArenaModel.fromMap(x)));
-
-    return arenas;
+        return arenas;
+      } else {
+        return [
+          {"error": "Status Code Error"}
+        ];
+      }
+    } catch (e) {
+      return {"error": "Not Expected Error"};
+    }
   }
 }

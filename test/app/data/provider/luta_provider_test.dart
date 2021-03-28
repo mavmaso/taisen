@@ -50,5 +50,37 @@ void main() {
       expect(result.id, arena.id);
       expect(result.status, arena.status);
     });
+
+    test('should not returns ArenaModel, when status code error', () async {
+      when(
+        getClientMock.get(
+          any,
+          headers: {"content-type": "application/json"},
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          body: {},
+          statusCode: 400,
+          headers: {},
+        ),
+      );
+
+      final result = await lutaProvider.getArena(1);
+
+      expect(result, {"error": "Status Code Error"});
+    });
+
+    test('should not returns, when catch a error', () async {
+      when(
+        getClientMock.get(
+          any,
+          headers: {"content-type": "application/json"},
+        ),
+      ).thenThrow(new ArgumentError());
+
+      final result = await lutaProvider.getArena(1);
+
+      expect(result, {"error": "Not Expected Error"});
+    });
   });
 }
