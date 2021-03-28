@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 
 class UserModel {
-  int id;
-  String login;
-  String nick;
+  final int id;
+  final String login;
+  final String nick;
 
-  UserModel({
+  const UserModel({
     @required this.id,
     @required this.login,
     @required this.nick,

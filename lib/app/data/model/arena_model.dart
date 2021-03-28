@@ -8,14 +8,14 @@ String arenaToJson(List<ArenaModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class ArenaModel {
-  int id;
-  int p1Id;
-  int p2Id;
-  int char1Id;
-  int char2Id;
-  String status;
+  final int id;
+  final int p1Id;
+  final int p2Id;
+  final int char1Id;
+  final int char2Id;
+  final String status;
 
-  ArenaModel({
+  const ArenaModel({
     @required this.id,
     @required this.p1Id,
     @required this.p2Id,

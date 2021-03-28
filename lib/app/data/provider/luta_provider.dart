@@ -18,10 +18,10 @@ class LutaProvider {
 
         return arena;
       } else {
-        return {"error": "Status Code Error"};
+        return Exception("Status Code Error");
       }
     } catch (e) {
-      return {"error": "Not Expected Error"};
+      return Exception("Not Expected Error");
     }
   }
 
@@ -37,12 +37,10 @@ class LutaProvider {
 
         return arenas;
       } else {
-        return [
-          {"error": "Status Code Error"}
-        ];
+        return Exception("Status Code Error");
       }
     } catch (e) {
-      return {"error": "Not Expected Error"};
+      return Exception("Not Expected Error");
     }
   }
 }

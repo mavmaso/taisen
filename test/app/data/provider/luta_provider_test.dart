@@ -67,7 +67,7 @@ void main() {
 
       final result = await lutaProvider.getArena(1);
 
-      expect(result, {"error": "Status Code Error"});
+      expect(result.toString(), Exception("Status Code Error").toString());
     });
 
     test('should not returns, when catch a error', () async {
@@ -80,7 +80,7 @@ void main() {
 
       final result = await lutaProvider.getArena(1);
 
-      expect(result, {"error": "Not Expected Error"});
+      expect(result.toString(), Exception("Not Expected Error").toString());
     });
   });
 }
