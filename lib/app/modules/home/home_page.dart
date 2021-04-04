@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taisen/app/modules/arena/arena_page.dart';
 import 'package:taisen/app/modules/home/home_controller.dart';
+import 'package:taisen/app/modules/login/login_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -20,7 +21,15 @@ class HomePage extends StatelessWidget {
                     onPressed: () => Get.to(Arena()))),
             Center(
               child: Obx(() => Text("N: ${c.count}")),
-            )
+            ),
+            Center(
+              child: ElevatedButton(
+                child: Text("Pagina de Login"),
+                onPressed: () => Get.to(
+                  LoginPage(),
+                ),
+              ),
+            ),
           ],
         ),
         floatingActionButton: FloatingActionButton(
